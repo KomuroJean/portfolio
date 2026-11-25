@@ -347,6 +347,12 @@ h1 em {
   border-color: rgba(166,206,190,.19);
 }
 
+.orbit-star-track {
+  position: absolute;
+  inset: 0;
+  animation: orbit-follow 60s linear infinite;
+}
+
 .orbit-middle {
   width: 72%;
   max-width: 390px;
@@ -390,7 +396,7 @@ h1 em {
   filter: drop-shadow(0 0 50px rgba(194,221,183,.14));
   transform-box: fill-box;
   transform-origin: center;
-  animation: floatstar 9s ease-in-out infinite, spinstar 85s linear infinite;
+  animation: floatstar 9s ease-in-out infinite, spinstar 600s linear infinite;
 }
 
 .tiny-star {
@@ -406,11 +412,13 @@ h1 em {
 }
 
 .tiny-star.b {
-  bottom: 16%;
-  left: 15%;
+  top: 0;
+  left: 50%;
+  bottom: auto;
   font-size: 14px;
   color: var(--jade);
-  animation-delay: -2.5s;
+  transform: translate(-50%,-50%);
+  animation: none;
 }
 
 .astral-note {
@@ -1736,6 +1744,16 @@ dialog::backdrop {
 
   50% {
     transform: translateY(-6px);
+  }
+}
+
+@keyframes orbit-follow {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
   }
 }
 
