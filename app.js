@@ -106,17 +106,21 @@
     ["heroGithub", "githubProfileLink", "contactGithub"].forEach(
       (id) => ($(id).href = githubUrl()),
     );
-    if (config.email && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(config.email)) {
-      $("contactLink").href = "mailto:" + config.email;
-      $("contactLink").removeAttribute("target");
-      $("contactLink").innerHTML =
-        'Enviar e-mail <span aria-hidden="true">↗</span>';
+    $("contactLink").innerHTML =
+      'Entre em contato <span aria-hidden="true">↗</span>';
+    const contactEmail =
+      typeof config.email === "string" &&
+      /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(config.email)
+        ? config.email
+        : "";
+    $("contactEmail").hidden = !contactEmail;
+    if (contactEmail) {
+      $("contactEmail").href = "mailto:" + contactEmail;
+      $("contactEmailValue").textContent = contactEmail;
     } else {
-      $("contactLink").href = githubUrl();
-      $("contactLink").target = "_blank";
-      $("contactLink").innerHTML =
-        'Visitar meu GitHub <span aria-hidden="true">↗</span>';
+      $("contactEmail").removeAttribute("href");
     }
+    $("contactGithubDetails").href = githubUrl();
   }
   const starSVG = `<svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M50 5C55 34 66 45 95 50C66 55 55 66 50 95C45 66 34 55 5 50C34 45 45 34 50 5Z" fill="#c3ddcb"/><path d="M50 18C54 39 61 46 82 50C61 54 54 61 50 82C46 61 39 54 18 50C39 46 46 39 50 18Z" stroke="#e9bb8f"/></svg>`;
   function visual(project) {
@@ -514,6 +518,35 @@
     .forEach((b) =>
       b.addEventListener("click", () => $(b.dataset.close).close()),
     );
+  $("contactLink").addEventListener("click", () => {
+    $("contactFormStatus").textContent = "";
+    $("contactDialog").showModal();
+  });
+  $("contactDialog").addEventListener("click", (event) => {
+    if (event.target === $("contactDialog")) $("contactDialog").close();
+  });
+  $("contactForm").addEventListener("submit", (event) => {
+    event.preventDefault();
+    const email =
+      typeof config.email === "string" &&
+      /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(config.email)
+        ? config.email
+        : "";
+    if (!email) {
+      $("contactFormStatus").textContent =
+        "O endereço de contato não está configurado.";
+      return;
+    }
+    const formData = new FormData(event.currentTarget);
+    const name = String(formData.get("name") || "").trim();
+    const senderEmail = String(formData.get("senderEmail") || "").trim();
+    const message = String(formData.get("message") || "").trim();
+    const subject = `Contato pelo portfólio: ${name}`;
+    const body = `Nome: ${name}\nE-mail: ${senderEmail}\n\n${message}`;
+    $("contactFormStatus").textContent =
+      "Abrindo seu aplicativo de e-mail…";
+    window.location.href = `mailto:${email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+  });
   $("mediaDialog").addEventListener("close", closeVideo);
   document
     .querySelectorAll("[data-player-action]")

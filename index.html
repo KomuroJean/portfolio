@@ -348,13 +348,11 @@
           em contato ou explorar mais do meu trabalho.
         </p>
         <div class="contact-actions">
-          <a
+          <button
             id="contactLink"
             class="primary-btn"
-            href="https://github.com/KomuroJean"
-            target="_blank"
-            rel="noopener noreferrer"
-            >Visitar meu GitHub <span aria-hidden="true">↗</span></a
+            type="button"
+            >Entre em contato <span aria-hidden="true">↗</span></button
           ><a
             class="soft-link"
             id="contactGithub"
@@ -393,6 +391,99 @@
           <div class="tags" id="detailTags"></div>
           <div id="detailLinks" class="detail-link-list"></div>
         </div>
+      </div>
+    </dialog>
+    <dialog
+      id="contactDialog"
+      class="contact-dialog"
+      aria-labelledby="contactDialogTitle"
+    >
+      <div class="contact-dialog-content">
+        <section class="contact-form-panel">
+          <div class="dialog-header">
+            <div>
+              <span class="eyebrow">VAMOS CONVERSAR</span>
+              <h3 id="contactDialogTitle">Entre em contato</h3>
+            </div>
+            <button
+              class="icon-close"
+              type="button"
+              data-close="contactDialog"
+              aria-label="Fechar formulário"
+            >
+              ×
+            </button>
+          </div>
+          <p class="contact-form-intro">
+            Preencha o formulário para preparar sua mensagem no aplicativo de
+            e-mail.
+          </p>
+          <form id="contactForm" class="contact-form">
+            <div class="contact-form-field">
+              <label for="contactName">Seu nome</label>
+              <input
+                id="contactName"
+                name="name"
+                type="text"
+                autocomplete="name"
+                required
+              />
+            </div>
+            <div class="contact-form-field">
+              <label for="contactSenderEmail">Seu e-mail</label>
+              <input
+                id="contactSenderEmail"
+                name="senderEmail"
+                type="email"
+                autocomplete="email"
+                required
+              />
+            </div>
+            <div class="contact-form-field">
+              <label for="contactMessage">Mensagem</label>
+              <textarea
+                id="contactMessage"
+                name="message"
+                rows="5"
+                required
+              ></textarea>
+            </div>
+            <button class="primary-btn" type="submit">
+              Enviar mensagem <span aria-hidden="true">↗</span>
+            </button>
+            <p
+              id="contactFormStatus"
+              class="contact-form-status"
+              role="status"
+              aria-live="polite"
+            ></p>
+          </form>
+        </section>
+        <aside class="contact-info-panel" aria-label="Informações de contato">
+          <span class="eyebrow">CONTATO DIRETO</span>
+          <h4>Prefere outro canal?</h4>
+          <p>Você também pode falar comigo por e-mail ou conhecer meu trabalho.</p>
+          <div class="contact-info-list">
+            <a id="contactEmail" class="contact-info-item">
+              <small>E-MAIL</small>
+              <span id="contactEmailValue"></span>
+            </a>
+            <a
+              id="contactGithubDetails"
+              class="contact-info-item"
+              href="https://github.com/KomuroJean"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <small>GITHUB</small>
+              <span>github.com/KomuroJean ↗</span>
+            </a>
+          </div>
+          <p class="contact-response-note">
+            Ao enviar, seu aplicativo de e-mail será aberto com a mensagem
+            preenchida.
+          </p>
+        </aside>
       </div>
     </dialog>
     <dialog
@@ -518,7 +609,7 @@
         "line2": "Web Dev",
         "intro": "Sou estudante da área de Tecnologia da Informação, com foco no desenvolvimento de aplicações web e interesse em desenvolvimento de jogos e design de interfaces. Neste portfólio, apresento projetos acadêmicos e pessoais que demonstram minhas habilidades técnicas, experiências práticas e evolução profissional.",
         "about": "Tenho interesse no desenvolvimento de soluções tecnológicas que combinem funcionalidade, usabilidade e criatividade. Busco aprimorar continuamente meus conhecimentos por meio de projetos acadêmicos e pessoais, explorando novas ferramentas, metodologias e áreas da computação, especialmente o desenvolvimento web e o design de interfaces.",
-        "email": "",
+        "email": "jeankomuro.dev@gmail.com",
         "projects": [
           {
             "id": "sapne",
