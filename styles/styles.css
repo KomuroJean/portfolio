@@ -350,7 +350,6 @@ h1 em {
 .orbit-middle {
   width: 72%;
   max-width: 390px;
-  transform: rotate(54deg) scaleY(1.17);
   border-color: rgba(207,160,112,.3);
 }
 
@@ -368,6 +367,7 @@ h1 em {
   border-radius: 50%;
   background: var(--gold);
   box-shadow: 0 0 20px rgba(237,184,135,.45);
+  animation: tiny-star-float 5s ease-in-out infinite;
 }
 
 .orbit-outer::before {
@@ -381,19 +381,23 @@ h1 em {
   width: 5px;
   height: 5px;
   background: var(--jade);
+  animation-delay: -2.5s;
 }
 
 .starburst {
   width: clamp(130px,20vw,235px);
   height: auto;
   filter: drop-shadow(0 0 50px rgba(194,221,183,.14));
-  animation: floatstar 9s ease-in-out infinite;
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: floatstar 9s ease-in-out infinite, spinstar 85s linear infinite;
 }
 
 .tiny-star {
   position: absolute;
   color: var(--gold);
   font-size: 20px;
+  animation: tiny-star-float 5s ease-in-out infinite;
 }
 
 .tiny-star.a {
@@ -406,6 +410,7 @@ h1 em {
   left: 15%;
   font-size: 14px;
   color: var(--jade);
+  animation-delay: -2.5s;
 }
 
 .astral-note {
@@ -1711,6 +1716,26 @@ dialog::backdrop {
 
   50% {
     transform: translateY(-13px) rotate(4deg);
+  }
+}
+
+@keyframes spinstar {
+  from {
+    rotate: 0deg;
+  }
+
+  to {
+    rotate: 360deg;
+  }
+}
+
+@keyframes tiny-star-float {
+  0%,100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-6px);
   }
 }
 
